@@ -17,6 +17,13 @@ pipeline {
               sh "mvn package"
            }
         }
-    
+	
+	stage('SonarQube analysis Stage') {
+           steps {
+               withSonarQubeEnv('sonarqube-tokenized') {
+                  sh 'mvn sonar:sonar'
+              }
+           }
+        }    
     }
 }
