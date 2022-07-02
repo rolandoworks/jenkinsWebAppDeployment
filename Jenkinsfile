@@ -31,6 +31,12 @@ pipeline {
                input('Do you want to deploy the ${currentBuild.currentResult} file to Tomcat?')
                   deploy adapters: [tomcat9(credentialsId: 'TomcatDeploymentUser', path: '', url: 'http://192.241.159.67:8080/')], contextPath: 'jenkinsWebAppDeployment', war: 'target/*.war'
             }
+        }
+
+	stage('Email Deployment Notification') {
+            steps {      
+               mail body: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - ${currentBuild.currentResult}\n\nCheck console output at ${env.BUILD_URL} to view the results.",subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - ${currentBuild.currentResult}!!",to: 'rolandoworks@gmail.com'   
+            }
         }    
     }
 }
