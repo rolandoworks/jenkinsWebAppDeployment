@@ -9,5 +9,6 @@
 	</head>
 	<body>
 		<h2>A simple app to test Jenkins Deployment plugin </h2>
+		<h2> Build package analyze and re-deploy </h2>
 	</body>
 </html>
